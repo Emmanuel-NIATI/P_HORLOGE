@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Structure
+Implementation-Title: Structure
+Implementation-Version: 1.8.0_161
+Specification-Vendor: Structure
+Created-By: Structure
+Specification-Title: Java Platform API Specification
+Specification-Version: 1.8
