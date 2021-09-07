@@ -7,17 +7,9 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="img"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-core.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-core-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-core-sources.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-device.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-device-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-device-sources.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-example.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-example-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-example-sources.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-gpio-extension.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-gpio-extension-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/pi4j-1.2/lib/pi4j-gpio-extension-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/emman/eclipse-workspace/P_PI4J_120/lib/pi4j-device.jar"/>
+	<classpathentry kind="lib" path="C:/Users/emman/eclipse-workspace/P_PI4J_120/lib/pi4j-example.jar"/>
+	<classpathentry kind="lib" path="C:/Users/emman/eclipse-workspace/P_PI4J_120/lib/pi4j-gpio-extension.jar"/>
+	<classpathentry kind="lib" path="C:/Users/emman/eclipse-workspace/P_PI4J_120/lib/pi4j-core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
