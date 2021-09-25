@@ -21,11 +21,11 @@ public class TestLCD
 
 			display.ClearScreen();
 
-			ImageIcon imageIcon02 = new ImageIcon( TestLCD.class.getResource( "justine02.png" ) );
+			ImageIcon chat01 = new ImageIcon( TestLCD.class.getResource( "chat01.png" ) );
 
-			int[] rgb_fo_02 = display.loadImage( imageIcon02 );
+			int[] rgb_chat01 = display.loadImage( chat01 );
 
-			display.drawPicture(rgb_fo_02, 240, 320, 0, 0);
+			display.drawPicture(rgb_chat01, 240, 320, 0, 0);
 
 		}
 		catch(IOException ioe)

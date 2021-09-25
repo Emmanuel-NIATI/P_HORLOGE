@@ -12,19 +12,35 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
-import fr.horloge.framework.pi4j.io.spi.SpiChannel;
-import fr.horloge.framework.pi4j.io.spi.SpiDevice;
-import fr.horloge.framework.pi4j.io.spi.SpiFactory;
-import fr.horloge.framework.pi4j.io.spi.SpiMode;
+// import fr.horloge.framework.pi4j.io.spi.SpiChannel;
+// import fr.horloge.framework.pi4j.io.spi.SpiDevice;
+// import fr.horloge.framework.pi4j.io.spi.SpiFactory;
+// import fr.horloge.framework.pi4j.io.spi.SpiMode;
+
+import com.pi4j.io.spi.SpiChannel;
+import com.pi4j.io.spi.SpiDevice;
+import com.pi4j.io.spi.SpiFactory;
+import com.pi4j.io.spi.SpiMode;
 
 public class ILI9341
 {
 
 	// Plan de cablâge
 	
+	// LCD ILI9341		RPI0W	-	RPI2b	-	RPI3b
+	//					pi4j					python / C#
+				
+	// 1) +Vcc			17) +3.3V				17) +3.3V 
+	// 2) GND			20) GND					20) GND
+	// 3) CS			24) CE0 (SPI) GPIO 10	24) CE0 (SPI) GPIO 8
+	// 4) RESET			16) GPIO 4				16) GPIO 23
+	// 5) DC/RS			15) GPIO 3				15) GPIO 22
+	// 6) MOSI			19) MOSI (SPI) GPIO 12	19) MOSI (SPI) GPIO 10
+	// 7) SCK			23) SCLK (SPI) GPIO 14	23) SCLK (SPI) GPIO 11		
+	// 8) LED			 1) +3.3V				 1) +3.3V
+	// 9) MISO			21) MISO (SPI) GPIO 13	19) MISO (SPI) GPIO 9
 	
-	
-	// Variable list
+	// Liste des variables
 	
 	private final static int LCD_W = 240;
 	private final static int LCD_H = 320;
@@ -36,7 +52,7 @@ public class ILI9341
 
  	private int resolution;
 
- 	// Resolution list
+ 	// Liste des résolutions
 
  	private final static int HEIGHT_04 = 4;
  	private final static int HEIGHT_08 = 8;
@@ -44,7 +60,7 @@ public class ILI9341
  	private final static int HEIGHT_16 = 16;
  	private final static int HEIGHT_32 = 32;
 
-	// Command list
+    // Liste des commandes
 
  	private final static short[] CMD_NO_OPERATION 								= { 0x00 };
  	private final static short[] CMD_SOFTWARE_RESET 							= { 0x01 };
@@ -300,7 +316,6 @@ public class ILI9341
 
     }
 
-
     private void setAddress( int x0, int y0, int x1, int y1) throws IOException
     {
 
@@ -326,7 +341,7 @@ public class ILI9341
     }
 
     // Zone screen
-    
+
     public void fillRectangle(int x0, int y0, int width, int height, int color) throws IOException
 	{
     	   	
