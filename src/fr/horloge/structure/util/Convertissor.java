@@ -3,7 +3,7 @@ package fr.horloge.structure.util;
 public class Convertissor
 {
 
-    public static boolean[] ConvertHexToBin(String _hex)
+    public static boolean[] convertHexToBin(String _hex)
     {
 
     	boolean[] res = new boolean[4];
@@ -44,7 +44,7 @@ public class Convertissor
 
     }
 
-    public static String ConvertBinToHex(boolean _b3, boolean _b2, boolean _b1, boolean _b0)
+    public static String convertBinToHex(boolean _b3, boolean _b2, boolean _b1, boolean _b0)
     {
 
         String res = "0";
