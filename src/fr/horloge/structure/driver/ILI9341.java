@@ -538,7 +538,8 @@ public class ILI9341
 
         String c41 = c4.substring( 0, 1);
         String c40 = c4.substring( 1, 1);
-        
+        /*
+
         boolean[] b01 = Convertissor.ConvertHexToBin(c01);
         boolean[] b00 = Convertissor.ConvertHexToBin(c00);
 
