@@ -480,7 +480,7 @@ public class ILI9341
 
     private void print(char c, int size, int color)
 
-    private void FillRectangle(int x0, int y0, int width, int height, int color)
+    
 
     
 
@@ -493,8 +493,54 @@ public class ILI9341
     
     // Zone Text    
     
+    private void print(char c, int x0, int y0, int size, int color) throws IOException
+    {
+    	
+    	/*
+        // bounds check
+        if (this.cursorX >= LCD_W || this.cursorY >= LCD_H)
+        {
+
+            return;
+        }
+
+        // do we have a new line, if so simply adjust cursor position
+        if (c == '\n')
+        {
+
+            // next line based on font size
+            this.cursorY += (byte)(textsize * 8);
+            // back to  character 0
+            this.cursorX = 0;
+        }
+        else if (c == '\r')
+        {
+
+            // back to  character 0
+            this.cursorX = 0;
+        }
+        else
+        {
+
+            this.MakeChar(this.cursorX, this.cursorY, c, textsize, color);
+
+            this.cursorX += (byte)(textsize * 6);
+
+            if (this.cursorX > (LCD_W - textsize * 6))
+            {
+
+                // next line based on font size
+                this.cursorY += (byte)(textsize * 8);
+                // back to  character 0
+                this.cursorX = 0;
+            }
+
+        }
+    	 */
+
+    }
     
-    private void makeChar(char c, int x0, int y0, int size, int color)
+    private void makeChar(char c, int x0, int y0, int size, int color) throws IOException
     {
     	
     	int widthCharOriginal = 6;
@@ -538,98 +584,97 @@ public class ILI9341
 
         String c41 = c4.substring( 0, 1);
         String c40 = c4.substring( 1, 1);
-        /*
 
-        boolean[] b01 = Convertissor.ConvertHexToBin(c01);
-        boolean[] b00 = Convertissor.ConvertHexToBin(c00);
+        boolean[] b01 = Convertissor.convertHexToBin(c01);
+        boolean[] b00 = Convertissor.convertHexToBin(c00);
 
-        boolean[] b11 = Convertissor.ConvertHexToBin(c11);
-        boolean[] b10 = Convertissor.ConvertHexToBin(c10);
+        boolean[] b11 = Convertissor.convertHexToBin(c11);
+        boolean[] b10 = Convertissor.convertHexToBin(c10);
 
-        boolean[] b21 = Convertissor.ConvertHexToBin(c21);
-        boolean[] b20 = Convertissor.ConvertHexToBin(c20);
+        boolean[] b21 = Convertissor.convertHexToBin(c21);
+        boolean[] b20 = Convertissor.convertHexToBin(c20);
 
-        boolean[] b31 = Convertissor.ConvertHexToBin(c31);
-        boolean[] b30 = Convertissor.ConvertHexToBin(c30);
+        boolean[] b31 = Convertissor.convertHexToBin(c31);
+        boolean[] b30 = Convertissor.convertHexToBin(c30);
 
-        boolean[] b41 = Convertissor.ConvertHexToBin(c41);
-        boolean[] b40 = Convertissor.ConvertHexToBin(c40);
+        boolean[] b41 = Convertissor.convertHexToBin(c41);
+        boolean[] b40 = Convertissor.convertHexToBin(c40);
 
-        ushort[] _charOriginal = new ushort[ wCharOriginal * hCharOriginal ];
+        int[] _charOriginal = new int[ widthCharOriginal * heightCharOriginal ];
 
-        if (b00[0]) { _charOriginal[0] = (ushort)color; } else { _charOriginal[0] = RGB888ToRGB565(0, 0, 0); }
-        if (b10[0]) { _charOriginal[1] = (ushort)color; } else { _charOriginal[1] = RGB888ToRGB565(0, 0, 0); }
-        if (b20[0]) { _charOriginal[2] = (ushort)color; } else { _charOriginal[2] = RGB888ToRGB565(0, 0, 0); }
-        if (b30[0]) { _charOriginal[3] = (ushort)color; } else { _charOriginal[3] = RGB888ToRGB565(0, 0, 0); }
-        if (b40[0]) { _charOriginal[4] = (ushort)color; } else { _charOriginal[4] = RGB888ToRGB565(0, 0, 0); }
-        _charOriginal[5] = RGB888ToRGB565(0, 0, 0);
+        if (b00[0]) { _charOriginal[0] = color; } else { _charOriginal[0] = 0x0000; }
+        if (b10[0]) { _charOriginal[1] = color; } else { _charOriginal[1] = 0x0000; }
+        if (b20[0]) { _charOriginal[2] = color; } else { _charOriginal[2] = 0x0000; }
+        if (b30[0]) { _charOriginal[3] = color; } else { _charOriginal[3] = 0x0000; }
+        if (b40[0]) { _charOriginal[4] = color; } else { _charOriginal[4] = 0x0000; }
+        _charOriginal[5] = 0x0000;
 
-        if (b00[1]) { _charOriginal[6] = (ushort)color; } else { _charOriginal[6] = RGB888ToRGB565(0, 0, 0); }
-        if (b10[1]) { _charOriginal[7] = (ushort)color; } else { _charOriginal[7] = RGB888ToRGB565(0, 0, 0); }
-        if (b20[1]) { _charOriginal[8] = (ushort)color; } else { _charOriginal[8] = RGB888ToRGB565(0, 0, 0); }
-        if (b30[1]) { _charOriginal[9] = (ushort)color; } else { _charOriginal[9] = RGB888ToRGB565(0, 0, 0); }
-        if (b40[1]) { _charOriginal[10] = (ushort)color; } else { _charOriginal[10] = RGB888ToRGB565(0, 0, 0); }
-        _charOriginal[11] = RGB888ToRGB565(0, 0, 0);
+        if (b00[1]) { _charOriginal[6] = color; } else { _charOriginal[6] = 0x0000; }
+        if (b10[1]) { _charOriginal[7] = color; } else { _charOriginal[7] = 0x0000; }
+        if (b20[1]) { _charOriginal[8] = color; } else { _charOriginal[8] = 0x0000; }
+        if (b30[1]) { _charOriginal[9] = color; } else { _charOriginal[9] = 0x0000; }
+        if (b40[1]) { _charOriginal[10] = color; } else { _charOriginal[10] = 0x0000; }
+        _charOriginal[11] = 0x0000;
 
-        if (b00[2]) { _charOriginal[12] = (ushort)color; } else { _charOriginal[12] = RGB888ToRGB565(0, 0, 0); }
-        if (b10[2]) { _charOriginal[13] = (ushort)color; } else { _charOriginal[13] = RGB888ToRGB565(0, 0, 0); }
-        if (b20[2]) { _charOriginal[14] = (ushort)color; } else { _charOriginal[14] = RGB888ToRGB565(0, 0, 0); }
-        if (b30[2]) { _charOriginal[15] = (ushort)color; } else { _charOriginal[15] = RGB888ToRGB565(0, 0, 0); }
-        if (b40[2]) { _charOriginal[16] = (ushort)color; } else { _charOriginal[16] = RGB888ToRGB565(0, 0, 0); }
-        _charOriginal[17] = RGB888ToRGB565(0, 0, 0);
+        if (b00[2]) { _charOriginal[12] = color; } else { _charOriginal[12] = 0x0000; }
+        if (b10[2]) { _charOriginal[13] = color; } else { _charOriginal[13] = 0x0000; }
+        if (b20[2]) { _charOriginal[14] = color; } else { _charOriginal[14] = 0x0000; }
+        if (b30[2]) { _charOriginal[15] = color; } else { _charOriginal[15] = 0x0000; }
+        if (b40[2]) { _charOriginal[16] = color; } else { _charOriginal[16] = 0x0000; }
+        _charOriginal[17] = 0x0000;
 
-        if (b00[3]) { _charOriginal[18] = (ushort)color; } else { _charOriginal[18] = RGB888ToRGB565(0, 0, 0); }
-        if (b10[3]) { _charOriginal[19] = (ushort)color; } else { _charOriginal[19] = RGB888ToRGB565(0, 0, 0); }
-        if (b20[3]) { _charOriginal[20] = (ushort)color; } else { _charOriginal[20] = RGB888ToRGB565(0, 0, 0); }
-        if (b30[3]) { _charOriginal[21] = (ushort)color; } else { _charOriginal[21] = RGB888ToRGB565(0, 0, 0); }
-        if (b40[3]) { _charOriginal[22] = (ushort)color; } else { _charOriginal[22] = RGB888ToRGB565(0, 0, 0); }
-        _charOriginal[23] = RGB888ToRGB565(0, 0, 0);
+        if (b00[3]) { _charOriginal[18] = color; } else { _charOriginal[18] = 0x0000; }
+        if (b10[3]) { _charOriginal[19] = color; } else { _charOriginal[19] = 0x0000; }
+        if (b20[3]) { _charOriginal[20] = color; } else { _charOriginal[20] = 0x0000; }
+        if (b30[3]) { _charOriginal[21] = color; } else { _charOriginal[21] = 0x0000; }
+        if (b40[3]) { _charOriginal[22] = color; } else { _charOriginal[22] = 0x0000; }
+        _charOriginal[23] = 0x0000;
 
-        if (b01[0]) { _charOriginal[24] = (ushort)color; } else { _charOriginal[24] = RGB888ToRGB565(0, 0, 0); }
-        if (b11[0]) { _charOriginal[25] = (ushort)color; } else { _charOriginal[25] = RGB888ToRGB565(0, 0, 0); }
-        if (b21[0]) { _charOriginal[26] = (ushort)color; } else { _charOriginal[26] = RGB888ToRGB565(0, 0, 0); }
-        if (b31[0]) { _charOriginal[27] = (ushort)color; } else { _charOriginal[27] = RGB888ToRGB565(0, 0, 0); }
-        if (b41[0]) { _charOriginal[28] = (ushort)color; } else { _charOriginal[28] = RGB888ToRGB565(0, 0, 0); }
-        _charOriginal[29] = RGB888ToRGB565(0, 0, 0);
+        if (b01[0]) { _charOriginal[24] = color; } else { _charOriginal[24] = 0x0000; }
+        if (b11[0]) { _charOriginal[25] = color; } else { _charOriginal[25] = 0x0000; }
+        if (b21[0]) { _charOriginal[26] = color; } else { _charOriginal[26] = 0x0000; }
+        if (b31[0]) { _charOriginal[27] = color; } else { _charOriginal[27] = 0x0000; }
+        if (b41[0]) { _charOriginal[28] = color; } else { _charOriginal[28] = 0x0000; }
+        _charOriginal[29] = 0x0000;
 
-        if (b01[1]) { _charOriginal[30] = (ushort)color; } else { _charOriginal[30] = RGB888ToRGB565(0, 0, 0); }
-        if (b11[1]) { _charOriginal[31] = (ushort)color; } else { _charOriginal[31] = RGB888ToRGB565(0, 0, 0); }
-        if (b21[1]) { _charOriginal[32] = (ushort)color; } else { _charOriginal[32] = RGB888ToRGB565(0, 0, 0); }
-        if (b31[1]) { _charOriginal[33] = (ushort)color; } else { _charOriginal[33] = RGB888ToRGB565(0, 0, 0); }
-        if (b41[1]) { _charOriginal[34] = (ushort)color; } else { _charOriginal[34] = RGB888ToRGB565(0, 0, 0); }
-        _charOriginal[35] = RGB888ToRGB565(0, 0, 0);
+        if (b01[1]) { _charOriginal[30] = color; } else { _charOriginal[30] = 0x0000; }
+        if (b11[1]) { _charOriginal[31] = color; } else { _charOriginal[31] = 0x0000; }
+        if (b21[1]) { _charOriginal[32] = color; } else { _charOriginal[32] = 0x0000; }
+        if (b31[1]) { _charOriginal[33] = color; } else { _charOriginal[33] = 0x0000; }
+        if (b41[1]) { _charOriginal[34] = color; } else { _charOriginal[34] = 0x0000; }
+        _charOriginal[35] = 0x0000;
 
-        if (b01[2]) { _charOriginal[36] = (ushort)color; } else { _charOriginal[36] = RGB888ToRGB565(0, 0, 0); }
-        if (b11[2]) { _charOriginal[37] = (ushort)color; } else { _charOriginal[37] = RGB888ToRGB565(0, 0, 0); }
-        if (b21[2]) { _charOriginal[38] = (ushort)color; } else { _charOriginal[38] = RGB888ToRGB565(0, 0, 0); }
-        if (b31[2]) { _charOriginal[39] = (ushort)color; } else { _charOriginal[39] = RGB888ToRGB565(0, 0, 0); }
-        if (b41[2]) { _charOriginal[40] = (ushort)color; } else { _charOriginal[40] = RGB888ToRGB565(0, 0, 0); }
-        _charOriginal[41] = RGB888ToRGB565(0, 0, 0);
+        if (b01[2]) { _charOriginal[36] = color; } else { _charOriginal[36] = 0x0000; }
+        if (b11[2]) { _charOriginal[37] = color; } else { _charOriginal[37] = 0x0000; }
+        if (b21[2]) { _charOriginal[38] = color; } else { _charOriginal[38] = 0x0000; }
+        if (b31[2]) { _charOriginal[39] = color; } else { _charOriginal[39] = 0x0000; }
+        if (b41[2]) { _charOriginal[40] = color; } else { _charOriginal[40] = 0x0000; }
+        _charOriginal[41] = 0x0000;
 
-        _charOriginal[42] = RGB888ToRGB565(0, 0, 0);
-        _charOriginal[43] = RGB888ToRGB565(0, 0, 0);
-        _charOriginal[44] = RGB888ToRGB565(0, 0, 0);
-        _charOriginal[45] = RGB888ToRGB565(0, 0, 0);
-        _charOriginal[46] = RGB888ToRGB565(0, 0, 0);
-        _charOriginal[47] = RGB888ToRGB565(0, 0, 0);
+        _charOriginal[42] = 0x0000;
+        _charOriginal[43] = 0x0000;
+        _charOriginal[44] = 0x0000;
+        _charOriginal[45] = 0x0000;
+        _charOriginal[46] = 0x0000;
+        _charOriginal[47] = 0x0000;
 
-        ushort[] _charSized = new ushort[wCharSized * hCharSized];
+        int[] _charSized = new int[widthCharSized * heightCharSized];
 
         int cs = 0;
 
-        for (int hco = 0; hco < hCharOriginal; hco++)
+        for (int hco = 0; hco < heightCharOriginal; hco++)
         {
 
-            for (int hts = 0; hts < textsize; hts++)
+            for (int hts = 0; hts < size; hts++)
             {
 
-                for (int wco = 0; wco < wCharOriginal; wco++)
+                for (int wco = 0; wco < widthCharOriginal; wco++)
                 {
 
-                    for (int wts = 0; wts < textsize; wts++)
+                    for (int wts = 0; wts < size; wts++)
                     {
 
-                        _charSized[cs] = _charOriginal[ hco * wCharOriginal + wco];
+                        _charSized[cs] = _charOriginal[ hco * widthCharOriginal + wco];
 
                         cs++;
 
@@ -641,22 +686,8 @@ public class ILI9341
 
         }
 
-        DrawPicture08( _charSized, wCharSized, hCharSized, x, y);
-
-    	
-    	*/
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+        drawPicture(_charSized, x0, y0, widthCharSized, heightCharSized);
+            	
     }
 
     

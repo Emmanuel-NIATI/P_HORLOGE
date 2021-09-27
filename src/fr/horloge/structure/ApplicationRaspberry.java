@@ -61,7 +61,6 @@ public class ApplicationRaspberry extends AbstractApplication
 				ecran.drawPicture(rgb_chat03, 0, 0, 240, 320);
 				ecran.drawPicture(rgb_chat04, 0, 0, 240, 320);
 				ecran.drawPicture(rgb_chat05, 0, 0, 240, 320);
-				ecran.clearScreen();
 				
 			}
 			

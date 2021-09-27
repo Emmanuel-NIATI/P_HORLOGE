@@ -1,5 +1,7 @@
 package fr.horloge.structure.driver;
 
+import java.lang.reflect.Array;
+
 public class DisplayFontTable
 {
 
@@ -14,10 +16,10 @@ public class DisplayFontTable
         {
 
         	FontCharacterDescriptor fcd = new FontCharacterDescriptor(' ', new byte[]{ 0x00, 0x00, 0x00, 0x00, 0x00}, "Caractère  ");
-        	
+
         	for(FontCharacterDescriptor fontCharacterDescriptor : fontTableStandart )
         	{
-        		
+
         		if( Character.compare( fontCharacterDescriptor.getCharacter(), _Car ) == 0 )
         		{
 
