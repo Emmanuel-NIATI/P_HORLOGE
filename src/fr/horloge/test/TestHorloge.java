@@ -7,6 +7,70 @@ import fr.horloge.structure.AbstractApplication;
 import fr.horloge.structure.ApplicationRaspberry;
 import fr.horloge.structure.ApplicationWindows;
 
+/**
+ * 
+ * @author Emmanuel-NIATI
+ * @version 1.00
+ * 
+ * Projet Java Horloge
+ * 
+ * 1) Préparation de la carte uSD :
+ * 
+ * 	Raspberry Pi Imager v1.4
+ * 	2020-05-27-raspios-buster-desktop-armhf.img
+ * 
+ * 
+ * 2) Accès à distance :
+ * 
+ * 	- Créer le fichier wpa-supplicant.conf
+ * 
+ * 	country=FR
+ * 	update-config=1
+ * 	ctrl-interface=DIR=/var/run/wpa-supplicant GROUP=nets
+ *	network = {
+ *	ssid="****"
+ *	psk="****"
+ *	key_mgmt=WPA-PSK
+ * 	}
+ *
+ *	- Créer le fichier vide SSH
+ *
+ * 	- Copier les deux fichiers à la racine de la carte uSD
+ * 
+ * 	- Insérer la carte uSD dans le Raspberry Pi 
+ * 
+ * 	- Démarrer le Raspberry Pi (pi/raspberry)
+ * 
+ * 
+ * 	3) Configuration :
+ * 
+ * 	pi@raspberrypi:~$sudo raspi-config
+ * 
+ * 		- Change User Password : ****
+ * 		- Hostname : ****
+ * 		- Boot Option : B4 Desktop Autologin
+ * 		- Localisation Options : Europe >> Paris
+ * 		- Interfacing Options : 
+ * 			- SSH : Enabled
+ * 			- VNC : Enabled
+ * 			- SPI : Enabled
+ *
+ *	pi@raspberrypi:~$sudo apt-get install xscreensaver
+ *	
+ *		- Mode : Disable Screen Saver
+ *
+ *	
+ *	4) Installation de java :
+ *
+ *	pi@raspberrypi:~$sudo apt-get update
+ *	pi@raspberrypi:~$sudo apt-get upgrade
+ *	pi@raspberrypi:~$mkdir java
+ *	pi@raspberrypi:~$sudo apt-get install openjdk-8-j
+ *	
+ *
+ */
+
+
 public class TestHorloge
 {
 	
