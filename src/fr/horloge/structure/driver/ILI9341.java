@@ -54,6 +54,9 @@ public class ILI9341
 
  	private int resolution;
 
+ 	private short cursorX;
+ 	private short cursorY;
+ 	
  	// Liste des résolutions
 
  	private final static int HEIGHT_04 = 4;
@@ -161,27 +164,27 @@ public class ILI9341
  	
  	// Liste des couleurs
  	
- 	public final static int COLOR_BLACK			= 0x0000;  //   0,   0,   0
- 	public final static int COLOR_NAVY       	= 0x000F;  //   0,   0, 123
- 	public final static int COLOR_DARKGREEN  	= 0x03E0;  //   0, 125,   0
- 	public final static int COLOR_DARKCYAN   	= 0x03EF;  //   0, 125, 123
- 	public final static int COLOR_MAROON     	= 0x7800;  // 123,   0,   0
- 	public final static int COLOR_PURPLE     	= 0x780F;  // 123,   0, 123
- 	public final static int COLOR_OLIVE      	= 0x7BE0;  // 123, 125,   0
- 	public final static int COLOR_LIGHTGREY		= 0xC618;  // 198, 195, 198
- 	public final static int COLOR_DARKGREY   	= 0x7BEF;  // 123, 125, 123
- 	public final static int COLOR_BLUE       	= 0x001F;  //   0,   0, 255
- 	public final static int COLOR_GREEN       	= 0x07E0;  //   0, 255,   0
- 	public final static int COLOR_CYAN        	= 0x07FF;  //   0, 255, 255
- 	public final static int COLOR_RED         	= 0xF800;  // 255,   0,   0
- 	public final static int COLOR_MAGENTA     	= 0xF81F;  // 255,   0, 255
- 	public final static int COLOR_YELLOW      	= 0xFFE0;  // 255, 255,   0
- 	public final static int COLOR_WHITE       	= 0xFFFF;  // 255, 255, 255
- 	public final static int COLOR_ORANGE      	= 0xFD20;  // 255, 165,   0
- 	public final static int COLOR_GREENYELLOW	= 0xAFE5;  // 173, 255,  41
- 	public final static int COLOR_PINK			= 0xFC18;  // 255, 130, 198
+ 	public final static int COLOR_BLACK											= 0x0000;  //   0,   0,   0
+ 	public final static int COLOR_NAVY											= 0x000F;  //   0,   0, 123
+ 	public final static int COLOR_DARKGREEN										= 0x03E0;  //   0, 125,   0
+ 	public final static int COLOR_DARKCYAN										= 0x03EF;  //   0, 125, 123
+ 	public final static int COLOR_MAROON										= 0x7800;  // 123,   0,   0
+ 	public final static int COLOR_PURPLE     									= 0x780F;  // 123,   0, 123
+ 	public final static int COLOR_OLIVE      									= 0x7BE0;  // 123, 125,   0
+ 	public final static int COLOR_LIGHTGREY										= 0xC618;  // 198, 195, 198
+ 	public final static int COLOR_DARKGREY   									= 0x7BEF;  // 123, 125, 123
+ 	public final static int COLOR_BLUE       									= 0x001F;  //   0,   0, 255
+ 	public final static int COLOR_GREEN       									= 0x07E0;  //   0, 255,   0
+ 	public final static int COLOR_CYAN        									= 0x07FF;  //   0, 255, 255
+ 	public final static int COLOR_RED         									= 0xF800;  // 255,   0,   0
+ 	public final static int COLOR_MAGENTA     									= 0xF81F;  // 255,   0, 255
+ 	public final static int COLOR_YELLOW      									= 0xFFE0;  // 255, 255,   0
+ 	public final static int COLOR_WHITE       									= 0xFFFF;  // 255, 255, 255
+ 	public final static int COLOR_ORANGE										= 0xFD20;  // 255, 165,   0
+ 	public final static int COLOR_GREENYELLOW									= 0xAFE5;  // 173, 255,  41
+ 	public final static int COLOR_PINK											= 0xFC18;  // 255, 130, 198
  	
- 	public final static int COLOR_PINK_PAULINE	= 0xFD38;  // 255, 165, 198
+ 	public final static int COLOR_PINK_PAULINE									= 0xFD38;  // 255, 165, 198
  	
     public ILI9341()
     {
@@ -495,21 +498,21 @@ public class ILI9341
     
     private void print(char c, int x0, int y0, int size, int color) throws IOException
     {
-    	
-    	/*
+
         // bounds check
-        if (this.cursorX >= LCD_W || this.cursorY >= LCD_H)
+        if ( (x0 >= LCD_W) || (y0 >= LCD_H) )
         {
 
             return;
         }
 
+        
         // do we have a new line, if so simply adjust cursor position
         if (c == '\n')
         {
 
             // next line based on font size
-            this.cursorY += (byte)(textsize * 8);
+            this.cursorY += (byte)(size * 8);
             // back to  character 0
             this.cursorX = 0;
         }
@@ -522,21 +525,20 @@ public class ILI9341
         else
         {
 
-            this.MakeChar(this.cursorX, this.cursorY, c, textsize, color);
+            this.makeChar(c, this.cursorX, this.cursorY, size, color);
 
-            this.cursorX += (byte)(textsize * 6);
+            this.cursorX += (byte)(size * 6);
 
-            if (this.cursorX > (LCD_W - textsize * 6))
+            if (this.cursorX > (LCD_W - size * 6))
             {
 
                 // next line based on font size
-                this.cursorY += (byte)(textsize * 8);
+                this.cursorY += (byte)(size * 8);
                 // back to  character 0
                 this.cursorX = 0;
             }
 
         }
-    	 */
 
     }
     

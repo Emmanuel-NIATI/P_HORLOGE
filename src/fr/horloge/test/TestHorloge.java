@@ -26,7 +26,7 @@ import fr.horloge.structure.ApplicationWindows;
  * 
  * 	country=FR
  * 	update-config=1
- * 	ctrl-interface=DIR=/var/run/wpa-supplicant GROUP=nets
+ * 	ctrl-interface=DIR=/var/run/wpa-supplicant GROUP=netdev
  *	network = {
  *	ssid="****"
  *	psk="****"
@@ -65,7 +65,13 @@ import fr.horloge.structure.ApplicationWindows;
  *	pi@raspberrypi:~$sudo apt-get update
  *	pi@raspberrypi:~$sudo apt-get upgrade
  *	pi@raspberrypi:~$mkdir java
- *	pi@raspberrypi:~$sudo apt-get install openjdk-8-j
+ *	pi@raspberrypi:~$sudo apt-get install openjdk-8-jdk
+ *
+ *
+ *	5) Installation de Pi4j :
+ *
+ *	pi@raspberrypi:~$curl -s get.pi4j.com|sudo bash
+ * 	pi@raspberrypi:~$sudo /opt/pi4j/examples/build
  *	
  *
  */
