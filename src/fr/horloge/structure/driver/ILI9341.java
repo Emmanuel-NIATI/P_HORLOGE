@@ -54,8 +54,8 @@ public class ILI9341
 
  	private int resolution;
 
- 	private short cursorX;
- 	private short cursorY;
+ 	private int cursorX;
+ 	private int cursorY;
  	
  	// Liste des résolutions
 
@@ -466,81 +466,9 @@ public class ILI9341
         }
 
     }
-    
-    
-    /*
 
 
-    // Zone Text
-
-    public void placeCursor(int x, int y)
-
-    public void print(String s, int size, int color)
-
-    public void println(String s, int size, int color)
-
-    private void print(char[] c, int size, int color)
-
-    private void print(char c, int size, int color)
-
-    
-
-    
-
-*/
-
-    
-
-    
-    
-    
     // Zone Text    
-    
-    private void print(char c, int x0, int y0, int size, int color) throws IOException
-    {
-
-        // bounds check
-        if ( (x0 >= LCD_W) || (y0 >= LCD_H) )
-        {
-
-            return;
-        }
-
-        
-        // do we have a new line, if so simply adjust cursor position
-        if (c == '\n')
-        {
-
-            // next line based on font size
-            this.cursorY += (byte)(size * 8);
-            // back to  character 0
-            this.cursorX = 0;
-        }
-        else if (c == '\r')
-        {
-
-            // back to  character 0
-            this.cursorX = 0;
-        }
-        else
-        {
-
-            this.makeChar(c, this.cursorX, this.cursorY, size, color);
-
-            this.cursorX += (byte)(size * 6);
-
-            if (this.cursorX > (LCD_W - size * 6))
-            {
-
-                // next line based on font size
-                this.cursorY += (byte)(size * 8);
-                // back to  character 0
-                this.cursorX = 0;
-            }
-
-        }
-
-    }
     
     private void makeChar(char c, int x0, int y0, int size, int color) throws IOException
     {
@@ -692,6 +620,83 @@ public class ILI9341
             	
     }
 
+    private void print(char c, int size, int color) throws IOException
+    {
+
+    	if (c == '\n')         // Nouvelle ligne
+        {
+
+            // Next line based on font size
+            this.cursorY += size * 8;
+            // Back to  character 0
+            this.cursorX = 0;
+
+        }
+        else if (c == '\r')		// Retour à la ligne
+        {
+
+            // Back to  character 0
+            this.cursorX = 0;
+
+        }
+        else if (c == '\t')		// Tabulation (4 caractères)
+        {
+
+            // 4 caractères plus à droite
+            this.cursorX += size * 6 * 4;
+
+        }
+        else
+        {
+
+            this.makeChar(c, this.cursorX, this.cursorY, size, color);
+
+            this.cursorX += size * 6;
+
+            if (this.cursorX > (LCD_W - size * 6))
+            {
+
+                // next line based on font size
+                this.cursorY += (byte)(size * 8);
+                // back to  character 0
+                this.cursorX = 0;
+            }
+
+        }
+
+    }
+    
+    public void placeCursor( int x, int y )
+    {
+
+    	this.cursorX = x;
+        this.cursorY = y;
+
+    }
+    
+    public void print( String s, int size, int color ) throws IOException
+    {
+
+        for (int i = 0; i < s.length(); i++)
+        {
+
+        	this.print( s.charAt(i), size, color );
+        }
+
+    }
+
+    public void println( String s, int size, int color ) throws IOException
+    {
+
+        for (int i = 0; i < s.length(); i++)
+        {
+
+        	this.print( s.charAt(i), size, color );
+        }
+
+        print("\n", size, color);
+
+    }
     
     // Zone Graphique
 
