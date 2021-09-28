@@ -485,9 +485,9 @@ public class ILI9341
 
             return;
         }
-
-        byte[] car = DisplayFontTable.getFontCharacterDescriptorFromFontTableStandart(c).getData();
         
+        byte[] car = DisplayFontTable.getFontCharacterDescriptorFromFontTableStandart(c).getData();
+
 		String c0 = Integer.toHexString( car[0] ); 
         String c1 = Integer.toHexString( car[1] );
         String c2 = Integer.toHexString( car[2] );
@@ -499,22 +499,22 @@ public class ILI9341
         if( c2.length() < 2 ) { c2 = "0" + c2; }
         if( c3.length() < 2 ) { c3 = "0" + c3; }
         if( c4.length() < 2 ) { c4 = "0" + c4; }
-
+        
         String c01 = c0.substring( 0, 1);
-        String c00 = c0.substring( 1, 1);
+        String c00 = c0.substring( 1, 2);
 
         String c11 = c1.substring( 0, 1);
-        String c10 = c1.substring( 1, 1);
+        String c10 = c1.substring( 1, 2);
 
         String c21 = c2.substring( 0, 1);
-        String c20 = c2.substring( 1, 1);
+        String c20 = c2.substring( 1, 2);
 
         String c31 = c3.substring( 0, 1);
-        String c30 = c3.substring( 1, 1);
+        String c30 = c3.substring( 1, 2);
 
         String c41 = c4.substring( 0, 1);
-        String c40 = c4.substring( 1, 1);
-
+        String c40 = c4.substring( 1, 2);
+        
         boolean[] b01 = Convertissor.convertHexToBin(c01);
         boolean[] b00 = Convertissor.convertHexToBin(c00);
 
@@ -623,7 +623,7 @@ public class ILI9341
     private void print(char c, int size, int color) throws IOException
     {
 
-    	if (c == '\n')         // Nouvelle ligne
+    	if ( c == '\n' )         // Nouvelle ligne
         {
 
             // Next line based on font size
@@ -632,14 +632,14 @@ public class ILI9341
             this.cursorX = 0;
 
         }
-        else if (c == '\r')		// Retour à la ligne
+        else if ( c == '\r' )		// Retour à la ligne
         {
 
             // Back to  character 0
             this.cursorX = 0;
 
         }
-        else if (c == '\t')		// Tabulation (4 caractères)
+        else if ( c == '\t' )		// Tabulation (4 caractères)
         {
 
             // 4 caractères plus à droite

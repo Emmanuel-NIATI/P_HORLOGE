@@ -53,6 +53,13 @@ public class ApplicationRaspberry extends AbstractApplication
 			int[] rgb_chat04 = ecran.loadImage( chat04 );
 			int[] rgb_chat05 = ecran.loadImage( chat05 );
 
+			ecran.drawPicture(rgb_chat01, 0, 0, 240, 320);
+			
+			ecran.placeCursor(0, 0);
+			
+			ecran.print( "Justine" , 4, ecran.COLOR_PINK_PAULINE);
+			
+			/*
 			while( true )
 			{
 
@@ -63,6 +70,7 @@ public class ApplicationRaspberry extends AbstractApplication
 				ecran.drawPicture(rgb_chat05, 0, 0, 240, 320);
 				
 			}
+			*/
 			
 		}
 		catch(IOException ioe)
