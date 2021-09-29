@@ -57,7 +57,7 @@ public class ApplicationRaspberry extends AbstractApplication
 			
 			ecran.placeCursor(0, 0);
 			
-			ecran.print( "Justine" , 4, ecran.COLOR_PINK_PAULINE);
+			ecran.print( "0" , 4, ecran.COLOR_PINK_PAULINE);
 			
 			/*
 			while( true )

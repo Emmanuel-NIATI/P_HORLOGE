@@ -36,7 +36,7 @@ public class Convertissor
 
         if ("D".equals(_hex) || "d".equals(_hex)) { res[0] = true; res[1] = false; res[2] = true; res[3] = true; }
 
-        if ("E".equals(_hex) || "E".equals(_hex)) { res[0] = false; res[1] = true; res[2] = true; res[3] = true; }
+        if ("E".equals(_hex) || "e".equals(_hex)) { res[0] = false; res[1] = true; res[2] = true; res[3] = true; }
 
         if ("F".equals(_hex) || "f".equals(_hex)) { res[0] = true; res[1] = true; res[2] = true; res[3] = true; }
 
