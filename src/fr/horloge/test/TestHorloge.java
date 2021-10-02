@@ -16,8 +16,8 @@ import fr.horloge.structure.ApplicationWindows;
  * 
  * 1) Préparation de la carte uSD :
  * 
- * 	Raspberry Pi Imager v1.4
- * 	2020-05-27-raspios-buster-desktop-armhf.img
+ * 	Raspberry Pi Imager v1.4 :
+ * 	2021-05-07-raspios-buster-armhf.img
  * 
  * 
  * 2) Accès à distance :
@@ -39,10 +39,10 @@ import fr.horloge.structure.ApplicationWindows;
  * 
  * 	- Insérer la carte uSD dans le Raspberry Pi 
  * 
- * 	- Démarrer le Raspberry Pi (pi/raspberry)
+ * 	- Démarrer le Raspberry Pi
  * 
  * 
- * 	3) Configuration :
+ * 	3) Configuration (PuTTY pi/raspberry) :
  * 
  * 	pi@raspberrypi:~$sudo raspi-config
  * 
@@ -54,23 +54,25 @@ import fr.horloge.structure.ApplicationWindows;
  * 			- SSH : Enabled
  * 			- VNC : Enabled
  * 			- SPI : Enabled
+ * 			- I2C : Enabled
  *
  *	pi@raspberrypi:~$sudo apt-get install xscreensaver
  *	
  *		- Mode : Disable Screen Saver
  *
+ * 	pi@raspberrypi:~$sudo apt-get update
+ *	pi@raspberrypi:~$sudo apt-get upgrade
+ *
  *	
  *	4) Installation de java :
  *
- *	pi@raspberrypi:~$sudo apt-get update
- *	pi@raspberrypi:~$sudo apt-get upgrade
+ *	pi@raspberrypi:~$sudo apt-get install openjdk-11-jdk
  *	pi@raspberrypi:~$mkdir java
- *	pi@raspberrypi:~$sudo apt-get install openjdk-8-jdk
  *
  *
  *	5) Installation de Pi4j :
  *
- *	pi@raspberrypi:~$curl -s get.pi4j.com|sudo bash
+ *	pi@raspberrypi:~$curl -sSL https://pi4j.com/install | sudo bash
  * 	pi@raspberrypi:~$sudo /opt/pi4j/examples/build
  *	
  *
