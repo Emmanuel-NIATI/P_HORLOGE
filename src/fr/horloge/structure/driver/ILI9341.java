@@ -27,7 +27,7 @@ import fr.horloge.structure.util.Convertissor;
 public class ILI9341
 {
 
-	// Plan de cablâge
+	// Plan de cablâge :
 	
 	// LCD ILI9341		RPI0W	-	RPI2b	-	RPI3b
 	//					pi4j					python / C#
@@ -42,7 +42,16 @@ public class ILI9341
 	// 8) LED			17) +3.3V				17) +3.3V					Fil rouge
 	// 9) MISO			21) MISO (SPI) GPIO 13	21) MISO (SPI) GPIO 9		Fil orange
 	
-	// Liste des variables
+	
+	// Mémo :
+
+	// byte		Signed 1 byte	Stores whole numbers from -128 to 127
+	// short	Signed 2 bytes	Stores whole numbers from -32,768 to 32,767
+	// int		Signed 4 bytes	Stores whole numbers from -2,147,483,648 to 2,147,483,647
+	// long		Signed 8 bytes	Stores whole numbers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+	
+	
+	// Liste des variables :
 	
 	private final static int LCD_W = 240;
 	private final static int LCD_H = 320;
@@ -334,6 +343,9 @@ public class ILI9341
 
     }
 
+    
+    // Zone Couleur
+    
     private int RGB888ToRGB565(short r8, short g8, short b8)
     {
 
@@ -346,7 +358,7 @@ public class ILI9341
     }
 
     
-    // Zone screen
+    // Zone Ecran
 
     public void fillRectangle(int x0, int y0, int width, int height, int color) throws IOException
 	{
@@ -389,7 +401,7 @@ public class ILI9341
     }
    
     
-    // Zone image
+    // Zone Image
 
     public int[] loadImage( ImageIcon imageIcon )
     {
@@ -468,11 +480,11 @@ public class ILI9341
     }
 
 
-    // Zone Text    
-    
+    // Zone Texte
+
     private void makeChar(char c, int x0, int y0, int size, int color) throws IOException
     {
-    	
+
     	int widthCharOriginal = 6;
     	int heightCharOriginal = 8;
     	
