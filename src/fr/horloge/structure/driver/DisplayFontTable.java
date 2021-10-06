@@ -1,18 +1,9 @@
 package fr.horloge.structure.driver;
 
-import java.lang.reflect.Array;
-
 public class DisplayFontTable
 {
 
-        public static FontCharacterDescriptor getFontCharacterDescriptorFromFontTableStandart(int _Order)
-        {
-
-            return fontTableStandart[_Order];
-
-        }
-
-        public static FontCharacterDescriptor getFontCharacterDescriptorFromFontTableStandart(char _Car)
+        public static FontCharacterDescriptor getFontCharacterDescriptorFromFontTableStandart(char _car)
         {
 
         	FontCharacterDescriptor fcd = new FontCharacterDescriptor(' ', new byte[]{ 0x00, 0x00, 0x00, 0x00, 0x00}, "Caractère  ");
@@ -20,7 +11,7 @@ public class DisplayFontTable
         	for(FontCharacterDescriptor fontCharacterDescriptor : fontTableStandart )
         	{
 
-        		if( Character.compare( fontCharacterDescriptor.getCharacter(), _Car ) == 0 )
+        		if( Character.compare( fontCharacterDescriptor.getCharacter(), _car ) == 0 )
         		{
 
         			fcd = fontCharacterDescriptor;
@@ -37,6 +28,13 @@ public class DisplayFontTable
         {
 
             return fontTableStandart.length;
+
+        }
+
+        public static FontCharacterDescriptor getFontCharacterDescriptorFromFontTableStandart(int _Order)
+        {
+
+            return fontTableStandart[_Order];
 
         }
 
