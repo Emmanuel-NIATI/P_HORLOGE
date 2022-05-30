@@ -14,15 +14,15 @@ import fr.horloge.structure.ApplicationWindows;
  * 
  * Projet Java Horloge
  * 
- * 1) Préparation de la carte uSD :
+ * 1) Prï¿½paration de la carte uSD :
  * 
  * 	Raspberry Pi Imager v1.4 :
  * 	2021-05-07-raspios-buster-armhf.img
  * 
  * 
- * 2) Accès à distance :
+ * 2) Accï¿½s ï¿½ distance :
  * 
- * 	- Créer le fichier wpa-supplicant.conf
+ * 	- Crï¿½er le fichier wpa-supplicant.conf
  * 
  * 	country=FR
  * 	update-config=1
@@ -33,13 +33,13 @@ import fr.horloge.structure.ApplicationWindows;
  *	key_mgmt=WPA-PSK
  * 	}
  *
- *	- Créer le fichier vide SSH
+ *	- Crï¿½er le fichier vide SSH
  *
- * 	- Copier les deux fichiers à la racine de la carte uSD
+ * 	- Copier les deux fichiers ï¿½ la racine de la carte uSD
  * 
- * 	- Insérer la carte uSD dans le Raspberry Pi 
+ * 	- Insï¿½rer la carte uSD dans le Raspberry Pi 
  * 
- * 	- Démarrer le Raspberry Pi
+ * 	- Dï¿½marrer le Raspberry Pi
  * 
  * 
  * 	3) Configuration (PuTTY pi/raspberry) :
@@ -82,6 +82,7 @@ import fr.horloge.structure.ApplicationWindows;
 public class TestHorloge
 {
 	
+	// main
 	public static void main(String[] args)
 	{
 
@@ -122,7 +123,7 @@ public class TestHorloge
 		else
 		{
 
-			System.out.println( "OS non prévu : " + System.getProperty("os.name") );
+			System.out.println( "OS non prï¿½vu : " + System.getProperty("os.name") );
 		}
 		
 	}
