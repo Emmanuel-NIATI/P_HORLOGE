@@ -81,8 +81,7 @@ import fr.horloge.structure.ApplicationWindows;
 
 public class TestHorloge
 {
-	
-	// main
+
 	public static void main(String[] args)
 	{
 
