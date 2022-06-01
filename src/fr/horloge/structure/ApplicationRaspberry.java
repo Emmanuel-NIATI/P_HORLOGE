@@ -24,15 +24,15 @@ public class ApplicationRaspberry extends AbstractApplication
 
 		super();
 		
-		// Création des ressources système
+		// CrÃ©ation des ressources systÃ¨mes
 		
 		diskFileMp3Explorer = FactoryRaspberry.getInstance().createGestionDiskFileMp3Explorer();
 		
-		// Création de l'écran LCD
+		// CrÃ©ation de l'Ã©cran LCD
 
 		ecran = FactoryRaspberry.getInstance().createGestionEcran();
 		
-		// Gestion de lécran
+		// Gestion de l'Ã©cran
 		
 		try
 		{
@@ -96,7 +96,6 @@ public class ApplicationRaspberry extends AbstractApplication
 		}
 
 	}
-
 	
 	public static final ApplicationRaspberry getInstance()
 	{

@@ -27,7 +27,7 @@ import fr.horloge.structure.util.Convertissor;
 public class ILI9341
 {
 
-	// Plan de cablâge :
+	// Plan de cablÃ¢ge :
 	
 	// LCD ILI9341		RPI0W	-	RPI2b	-	RPI3b
 	//					pi4j					python / C#
@@ -43,7 +43,7 @@ public class ILI9341
 	// 9) MISO			21) MISO (SPI) GPIO 13	21) MISO (SPI) GPIO 9		Fil orange
 	
 	
-	// Mémo :
+	// MÃ©mo :
 
 	// byte		Signed 1 byte	Stores whole numbers from -128 to 127
 	// short	Signed 2 bytes	Stores whole numbers from -32,768 to 32,767
@@ -66,7 +66,7 @@ public class ILI9341
  	private int cursorX;
  	private int cursorY;
  	
- 	// Liste des résolutions
+ 	// Liste des rï¿½solutions
 
  	private final static int HEIGHT_04 = 4;
  	private final static int HEIGHT_08 = 8;
@@ -644,17 +644,17 @@ public class ILI9341
             this.cursorX = 0;
 
         }
-        else if ( c == '\r' )		// Retour à la ligne
+        else if ( c == '\r' )		// Retour Ã  la ligne
         {
 
             // Back to  character 0
             this.cursorX = 0;
 
         }
-        else if ( c == '\t' )		// Tabulation (4 caractères)
+        else if ( c == '\t' )		// Tabulation (4 caractÃ¨res)
         {
 
-            // 4 caractères plus à droite
+            // 4 caractÃ¨res de plus Ã  droite
             this.cursorX += size * 6 * 4;
 
         }
@@ -901,6 +901,4 @@ public class ILI9341
 
     }
 
-    
-    
 }
