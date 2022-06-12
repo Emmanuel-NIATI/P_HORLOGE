@@ -12,11 +12,6 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
-// import fr.horloge.framework.pi4j.io.spi.SpiChannel;
-// import fr.horloge.framework.pi4j.io.spi.SpiDevice;
-// import fr.horloge.framework.pi4j.io.spi.SpiFactory;
-// import fr.horloge.framework.pi4j.io.spi.SpiMode;
-
 import com.pi4j.io.spi.SpiChannel;
 import com.pi4j.io.spi.SpiDevice;
 import com.pi4j.io.spi.SpiFactory;

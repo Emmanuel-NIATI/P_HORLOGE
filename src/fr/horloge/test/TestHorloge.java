@@ -3,6 +3,8 @@ package fr.horloge.test;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+
+
 import fr.horloge.structure.AbstractApplication;
 import fr.horloge.structure.ApplicationRaspberry;
 import fr.horloge.structure.ApplicationWindows;
@@ -70,11 +72,24 @@ import fr.horloge.structure.ApplicationWindows;
  *	pi@raspberrypi:~$mkdir java
  *
  *
- *	5) Installation de Pi4j :
+ *	4 bis) Installation alternative de java sur raspberry pi 0 w :
  *
- *	pi@raspberrypi:~$curl -sSL https://pi4j.com/install | sudo bash
- * 	pi@raspberrypi:~$sudo /opt/pi4j/examples/build
- *	
+ *	pi@raspberrypi:~$cd /usr/lib/jvm
+ *	pi@raspberrypi:~$sudo wget https://cdn.azul.com/zulu-embedded/bin/zulu11.41.75-ca-jdk11.0.8-linux_aarch32hf.tar.gz
+ *	pi@raspberrypi:~$sudo tar -xzvf zulu11.41.75-ca-jdk11.0.8-linux_aarch32hf.tar.gz
+ *	pi@raspberrypi:~$sudo rm zulu11.41.75-ca-jdk11.0.8-linux_aarch32hf.tar.gz
+ *
+ *	pi@raspberrypi:~$sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/zulu11.41.75-ca-jdk11.0.8-linux_aarch32hf/bin/java 1
+ *	pi@raspberrypi:~$sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/zulu11.41.75-ca-jdk11.0.8-linux_aarch32hf/bin/javac 1
+ *
+ *	pi@raspberrypi:~$sudo update-alternatives --config java (Press <enter> to keep the current choice[*], or type selection number: 2)
+ *	pi@raspberrypi:~$sudo update-alternatives --config javac (Press <enter> to keep the current choice[*], or type selection number: 2)
+ *
+ *
+ *	5) Installation de Pi4j (V 1.4) :
+ *
+ *	pi@raspberrypi:~$sudo dpkg -i pi4j-1.4.deb
+ *
  *
  */
 

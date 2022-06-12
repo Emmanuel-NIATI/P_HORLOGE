@@ -17,7 +17,6 @@ public class FactoryRaspberry
 	private DiskFileMp3Explorer diskFileMp3Explorer;
 	
 	private ILI9341 ecran;
-
 	
 	private FactoryRaspberry()
 	{
@@ -47,8 +46,5 @@ public class FactoryRaspberry
 
 		return this.ecran;
 	}
-	
-	
-	
 	
 }

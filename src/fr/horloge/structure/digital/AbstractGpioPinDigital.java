@@ -10,12 +10,8 @@ public abstract class AbstractGpioPinDigital
 	
 	public AbstractGpioPinDigital()
 	{
-		
-		if( !System.getProperty("os.name").startsWith("Windows") )
-		{
-			
-			this.gpio = GpioFactory.getInstance();
-		}
+
+		this.gpio = GpioFactory.getInstance();
 		
 	}
 
