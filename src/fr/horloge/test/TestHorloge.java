@@ -113,7 +113,7 @@ public class TestHorloge
 			catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e)
 			{
 
-				System.out.println(">>> " + e.getClass() + e.getMessage() );
+				System.out.println(">>>>>>>>>> " + e.getClass() + e.getMessage() );
 			}
 			
 		}
@@ -129,14 +129,14 @@ public class TestHorloge
 			catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e)
 			{
 
-				System.out.println(">>> " + e.getClass() + e.getMessage() );
+				System.out.println(">>>>>>>>>> " + e.getClass() + e.getMessage() );
 			}
 			
 		}
 		else
 		{
 
-			System.out.println( "OS non prévu : " + System.getProperty("os.name") );
+			System.out.println( ">>>>>>>>>> OS non prévu : " + System.getProperty("os.name") );
 		}
 		
 	}

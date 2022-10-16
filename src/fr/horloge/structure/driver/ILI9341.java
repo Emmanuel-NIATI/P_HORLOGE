@@ -22,31 +22,34 @@ import fr.horloge.structure.util.Convertissor;
 public class ILI9341
 {
 
-	// Plan de cablâge :
+	// Plan de cablâge
 	
 	// LCD ILI9341		RPI0W	-	RPI2b	-	RPI3b
 	//					pi4j					python / C#
-				
-	// 1) +Vcc			 1) +3.3V				 1) +3.3V 					Fil rouge
-	// 2) GND			20) GND					20) GND						Fil noir
-	// 3) CS			24) CE0 (SPI) GPIO 10	24) CE0 (SPI) GPIO 8		Fil jaune
-	// 4) RESET			16) GPIO 4				16) GPIO 23					Fil violet
-	// 5) DC/RS			15) GPIO 3				15) GPIO 22					Fil vert
-	// 6) MOSI			19) MOSI (SPI) GPIO 12	19) MOSI (SPI) GPIO 10		Fil bleu
-	// 7) SCK			23) SCLK (SPI) GPIO 14	23) SCLK (SPI) GPIO 11		Fil blanc
-	// 8) LED			17) +3.3V				17) +3.3V					Fil rouge
-	// 9) MISO			21) MISO (SPI) GPIO 13	21) MISO (SPI) GPIO 9		Fil orange
+	
+    // 1) +Vcc			 1) +3.3V				 1) +3.3V 					Fil rouge
+    // 2) GND			20) GND					20) GND						Fil noir
+    // 3) CS			24) CE0 (SPI) GPIO 10	24) CE0 (SPI) GPIO 8		Fil blanc
+    // 4) RESET			16) GPIO 4				16) GPIO 23					Fil jaune
+    // 5) DC/RS			15) GPIO 3				15) GPIO 22					Fil violet
+    // 6) MOSI			19) MOSI (SPI) GPIO 12	19) MOSI (SPI) GPIO 10		Fil bleu
+    // 7) SCK			23) SCLK (SPI) GPIO 14	23) SCLK (SPI) GPIO 11		Fil orange
+    // 8) LED			17) +3.3V				17) +3.3V					Fil vert
+    // 9) MISO			21) MISO (SPI) GPIO 13	21) MISO (SPI) GPIO 9		Fil marron
 	
 	
-	// Mémo :
+	// Mémo
 
 	// byte		Signed 1 byte	Stores whole numbers from -128 to 127
+
 	// short	Signed 2 bytes	Stores whole numbers from -32,768 to 32,767
+
 	// int		Signed 4 bytes	Stores whole numbers from -2,147,483,648 to 2,147,483,647
+
 	// long		Signed 8 bytes	Stores whole numbers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
 	
 	
-	// Liste des variables :
+	// Liste des variables
 	
 	private final static int LCD_W = 240;
 	private final static int LCD_H = 320;
@@ -61,7 +64,7 @@ public class ILI9341
  	private int cursorX;
  	private int cursorY;
  	
- 	// Liste des r�solutions
+ 	// Liste des résolutions
 
  	private final static int HEIGHT_04 = 4;
  	private final static int HEIGHT_08 = 8;
@@ -187,9 +190,11 @@ public class ILI9341
  	public final static int COLOR_ORANGE										= 0xFD20;  // 255, 165,   0
  	public final static int COLOR_GREENYELLOW									= 0xAFE5;  // 173, 255,  41
  	public final static int COLOR_PINK											= 0xFC18;  // 255, 130, 198
- 	
+
+ 	public final static int COLOR_BLUE_WINDOWS									= 0x0B98;  //   8, 113, 196
+
  	public final static int COLOR_PINK_PAULINE									= 0xFD38;  // 255, 165, 198
- 	
+
     public ILI9341()
     {
 
