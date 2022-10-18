@@ -19,45 +19,86 @@ public class ApplicationRaspberry extends AbstractApplication
 
 	private ILI9341 ecran = FactoryRaspberry.getInstance().createGestionEcran();
 	
-	private int[] rgb_chat01;
-	private int[] rgb_chat02;
-	private int[] rgb_chat03;
-	private int[] rgb_chat04;
-	private int[] rgb_chat05;
+	private int[] rgb_raspios;
+	
+	private int[] rgb_black;
+	
+	private int[] rgb_admin;
+	private int[] rgb_blast;
+	private int[] rgb_csa;
+	private int[] rgb_gamer;
+	
+	private String rgb = "";
 	
 	private ApplicationRaspberry()
 	{
 
 		super();
+		
+        // Initialisation des variables
+        this.initVariable();
 
-		// Gestion de l'écran
+        // Initialisation du GPIO
+        this.initGpio();
 
+        // Initialisation de l'affichage
+        this.initSpiDisplay();
+
+        // Initialisation des thread
+        this.initThread();
+
+	}
+	
+	private void initVariable()
+	{
+
+		ImageIcon img_raspios = new ImageIcon( ApplicationRaspberry.class.getResource( "raspios.png" ) );
+		ImageIcon img_black = new ImageIcon( ApplicationRaspberry.class.getResource( "black.png" ) );
+		ImageIcon img_admin = new ImageIcon( ApplicationRaspberry.class.getResource( "admin.png" ) );
+		ImageIcon img_blast = new ImageIcon( ApplicationRaspberry.class.getResource( "blast.png" ) );
+		ImageIcon img_csa = new ImageIcon( ApplicationRaspberry.class.getResource( "csa.png" ) );
+		ImageIcon img_gamer = new ImageIcon( ApplicationRaspberry.class.getResource( "gamer.png" ) );
+
+		rgb_raspios = ecran.loadImage( img_raspios );
+		rgb_black = ecran.loadImage( img_black );
+		rgb_admin = ecran.loadImage( img_admin );
+		rgb_blast = ecran.loadImage( img_blast );
+		rgb_csa = ecran.loadImage( img_csa );
+		rgb_gamer = ecran.loadImage( img_gamer );
+		
+	}
+
+	private void initGpio()
+	{
+		
+	}
+	
+	private void initSpiDisplay()
+	{
+		
 		try
 		{
 
 			ecran.powerOnSequence();
 
 			ecran.clearScreen();
-
-			ImageIcon chat01 = new ImageIcon( ApplicationRaspberry.class.getResource( "chat01.png" ) );
-			ImageIcon chat02 = new ImageIcon( ApplicationRaspberry.class.getResource( "chat02.png" ) );
-			ImageIcon chat03 = new ImageIcon( ApplicationRaspberry.class.getResource( "chat03.png" ) );
-			ImageIcon chat04 = new ImageIcon( ApplicationRaspberry.class.getResource( "chat04.png" ) );
-			ImageIcon chat05 = new ImageIcon( ApplicationRaspberry.class.getResource( "chat05.png" ) );
 			
-			rgb_chat01 = ecran.loadImage( chat01 );
-			rgb_chat02 = ecran.loadImage( chat02 );
-			rgb_chat03 = ecran.loadImage( chat03 );
-			rgb_chat04 = ecran.loadImage( chat04 );
-			rgb_chat05 = ecran.loadImage( chat05 );
+			ecran.drawPicture(rgb_raspios, 0, 0, 240, 240);
+			
+			rgb = "raspios";
+			
+			ecran.drawPicture(rgb_black, 0, 240, 240, 80);
+		
+            // Initialiser l'affichage de l'heure et de la date
+            String hh = "09";
+            String mm = "30";
+            String ss = "25";
+            String dow = "Mar";
+            String day = "18";
+            String month = "10";
+            String year = "2022";
 
-			// Création du Thread Horloge Picture
-			ThreadHorlogePicture threadHorlogePicture = new ThreadHorlogePicture();
-			threadHorlogePicture.start();
-
-			// Création du Thread Horloge Time
-			ThreadHorlogeTime threadHorlogeTime = new ThreadHorlogeTime ();
-			threadHorlogeTime.start();
+            setTime(hh, mm, ss, dow, day, month, year);
 
 		}
 		catch(IOException ioe)
@@ -71,6 +112,19 @@ public class ApplicationRaspberry extends AbstractApplication
 			System.out.println( ">>>>>>>>>> InterruptedException : " + ie.getMessage() );
 		}
 
+	}
+
+	private void initThread()
+	{
+		
+		// Création du Thread Horloge Picture
+		ThreadHorlogePicture threadHorlogePicture = new ThreadHorlogePicture();
+		threadHorlogePicture.start();
+
+		// Création du Thread Horloge Time
+		ThreadHorlogeTime threadHorlogeTime = new ThreadHorlogeTime ();
+		threadHorlogeTime.start();
+		
 	}
 	
 	// Mise à l'heure
@@ -122,26 +176,57 @@ public class ApplicationRaspberry extends AbstractApplication
 				
 				try
 				{
+					
+					if( "raspios".equals( rgb ) )
+					{
 
-					ecran.drawPicture(rgb_chat01, 0, 0, 240, 320);
+						ecran.drawPicture(rgb_csa, 0, 0, 240, 240);
 
-					this.pause( 2000 );
+						rgb="csa";
+						
+						this.pause( 2000 );
+						
+					}
+					else if( "csa".equals( rgb ) )
+					{
 
-					ecran.drawPicture(rgb_chat02, 0, 0, 240, 320);
+						ecran.drawPicture(rgb_admin, 0, 0, 240, 240);
 
-					this.pause( 2000 );
+						rgb="admin";
+						
+						this.pause( 2000 );
+						
+					}
+					else if( "admin".equals( rgb ) )
+					{
 
-					ecran.drawPicture(rgb_chat03, 0, 0, 240, 320);
+						ecran.drawPicture(rgb_gamer, 0, 0, 240, 240);
 
-					this.pause( 2000 );
+						rgb="gamer";
+						
+						this.pause( 2000 );
+						
+					}
+					else if( "gamer".equals( rgb ) )
+					{
 
-					ecran.drawPicture(rgb_chat04, 0, 0, 240, 320);
+						ecran.drawPicture(rgb_blast, 0, 0, 240, 240);
 
-					this.pause( 2000 );
+						rgb="blast";
+						
+						this.pause( 2000 );
+						
+					}
+					else if( "blast".equals( rgb ) )
+					{
 
-					ecran.drawPicture(rgb_chat05, 0, 0, 240, 320);
+						ecran.drawPicture(rgb_csa, 0, 0, 240, 240);
 
-					this.pause( 2000 );				
+						rgb="csa";
+						
+						this.pause( 2000 );
+						
+					}
 					
 				}
 				catch (IOException ioe) 
