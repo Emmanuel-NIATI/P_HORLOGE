@@ -1,11 +1,5 @@
 package fr.horloge.structure;
 
-import com.pi4j.io.gpio.PinPullResistance;
-import com.pi4j.io.gpio.RaspiPin;
-
-import fr.horloge.structure.digital.button.Button;
-import fr.horloge.structure.digital.buzzer.Buzzer;
-import fr.horloge.structure.digital.led.Led;
 import fr.horloge.structure.driver.ILI9341;
 import fr.horloge.structure.system.DiskFileMp3Explorer;
 
@@ -17,6 +11,7 @@ public class FactoryRaspberry
 	private DiskFileMp3Explorer diskFileMp3Explorer;
 	
 	private ILI9341 ecran;
+	
 	
 	private FactoryRaspberry()
 	{
