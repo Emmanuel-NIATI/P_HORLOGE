@@ -264,12 +264,12 @@ public class ApplicationRaspberry extends AbstractApplication
 		public void run()
 		{
 
-			Date date;
+			Date date = Calendar.getInstance().getTime();
 
 			while( true )
 			{
 
-				date = Calendar.getInstance().getTime();
+
 
 				SimpleDateFormat simpleDateFormatHour = new SimpleDateFormat("HH");
 				SimpleDateFormat simpleDateFormatMinute = new SimpleDateFormat("mm");
