@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 
+import fr.horloge.structure.driver.IDisplay;
 import fr.horloge.structure.driver.ILI9341;
 import fr.horloge.structure.system.DiskFileMp3Explorer;
 
@@ -17,7 +18,7 @@ public class ApplicationRaspberry extends AbstractApplication
 
 	private DiskFileMp3Explorer diskFileMp3Explorer = FactoryRaspberry.getInstance().createGestionDiskFileMp3Explorer();
 
-	private ILI9341 ecran = FactoryRaspberry.getInstance().createGestionEcran();
+	private IDisplay ecran = FactoryRaspberry.getInstance().createGestionEcran();
 	
 	private int[] rgb_raspios;
 	
@@ -72,7 +73,46 @@ public class ApplicationRaspberry extends AbstractApplication
 	{
 		
 	}
-	
+
+	// Mise à l'heure
+	public void setTime(Date date_) throws IOException
+	{
+		
+		// Mise en forme de la date
+		
+		SimpleDateFormat simpleDateFormatHour = new SimpleDateFormat("HH");
+		SimpleDateFormat simpleDateFormatMinute = new SimpleDateFormat("mm");
+		SimpleDateFormat simpleDateFormatSeconde = new SimpleDateFormat("ss");
+		
+		SimpleDateFormat simpleDateFormatDayOfWeek = new SimpleDateFormat("E");
+		SimpleDateFormat simpleDateFormatDay = new SimpleDateFormat("dd");
+		SimpleDateFormat simpleDateFormatMonth = new SimpleDateFormat("MM");
+		SimpleDateFormat simpleDateFormatYear = new SimpleDateFormat("yyyy");
+		
+		String hour_ =  simpleDateFormatHour.format(date_);
+		String minute_ = simpleDateFormatMinute.format(date_);
+		String seconde_ = simpleDateFormatSeconde.format(date_);
+
+		String dow_ = simpleDateFormatDayOfWeek.format(date_);
+		String day_ = simpleDateFormatDay.format(date_);
+		String month_ = simpleDateFormatMonth.format(date_);
+		String year_ = simpleDateFormatYear.format(date_);
+		
+        // Affiche HH:MM:SS
+
+        ecran.placeCursor(0, 34 * 8);
+        ecran.print( hour_ + ":" + minute_, 4, ILI9341.COLOR_BLUE_WINDOWS);
+
+        ecran.placeCursor(20 * 6, 34 * 8);
+        ecran.print( ":" + seconde_, 3, ILI9341.COLOR_BLUE_WINDOWS);
+
+        // Affiche Dow dd/mm/yyyy
+
+        ecran.placeCursor(0, 38 * 8);
+        ecran.print( dow_ + " " + day_ + "/" + month_ + "/" + year_, 2, ILI9341.COLOR_BLUE_WINDOWS);
+
+	}
+
 	private void initSpiDisplay()
 	{
 		
@@ -88,17 +128,10 @@ public class ApplicationRaspberry extends AbstractApplication
 			rgb = "raspios";
 			
 			ecran.drawPicture(rgb_black, 0, 240, 240, 80);
-		
-            // Initialiser l'affichage de l'heure et de la date
-            String hh = "09";
-            String mm = "30";
-            String ss = "25";
-            String dow = "Mar";
-            String day = "18";
-            String month = "10";
-            String year = "2022";
 
-            setTime(hh, mm, ss, dow, day, month, year);
+			Date date_ = Calendar.getInstance().getTime();
+			
+            setTime( date_ );
 
 		}
 		catch(IOException ioe)
@@ -116,40 +149,14 @@ public class ApplicationRaspberry extends AbstractApplication
 
 	private void initThread()
 	{
-		
-		// Création du Thread Horloge Picture
-		ThreadHorlogePicture threadHorlogePicture = new ThreadHorlogePicture();
-		threadHorlogePicture.start();
 
-		// Création du Thread Horloge Time
-		ThreadHorlogeTime threadHorlogeTime = new ThreadHorlogeTime ();
-		threadHorlogeTime.start();
-		
+		// Création du Thread Horloge
+		ThreadHorloge threadHorloge = new ThreadHorloge();
+		threadHorloge.start();
+
 	}
 	
-	// Mise à l'heure
-	public void setTime( String _hh, String _mm, String _ss, String _dow, String _day, String _month, String _year) throws IOException
-	{
-
-        // Affiche HH:MM:SS
-
-        ecran.placeCursor(0, 34 * 8);
-        ecran.print( _hh + ":" + _mm, 4, ILI9341.COLOR_BLUE_WINDOWS);
-
-        ecran.placeCursor(20 * 6, 34 * 8);
-        ecran.print( ":" + _ss, 3, ILI9341.COLOR_BLUE_WINDOWS);
-
-        ecran.placeCursor(23 * 6, 34 * 8);
-        ecran.print(_ss, 3, ILI9341.COLOR_BLUE_WINDOWS);
-
-        // Affiche Dow dd/mm/yyyy
-
-        ecran.placeCursor(0, 38 * 8);
-        ecran.print( _dow + " " + _day + "/" + _month + "/" + _year, 2, ILI9341.COLOR_BLUE_WINDOWS);
-		
-	}
-
-	public class ThreadHorlogePicture extends Thread
+	public class ThreadHorloge extends Thread
 	{
 		
 		private void pause( int ms )
@@ -176,15 +183,22 @@ public class ApplicationRaspberry extends AbstractApplication
 				
 				try
 				{
-					
+
+					for( int i = 0; i < 10; i++ )	
+					{
+
+						setTime( Calendar.getInstance().getTime() );	
+						
+						this.pause( 200 );
+
+					}
+
 					if( "raspios".equals( rgb ) )
 					{
 
 						ecran.drawPicture(rgb_csa, 0, 0, 240, 240);
 
 						rgb="csa";
-						
-						this.pause( 2000 );
 						
 					}
 					else if( "csa".equals( rgb ) )
@@ -194,8 +208,6 @@ public class ApplicationRaspberry extends AbstractApplication
 
 						rgb="admin";
 						
-						this.pause( 2000 );
-						
 					}
 					else if( "admin".equals( rgb ) )
 					{
@@ -203,8 +215,6 @@ public class ApplicationRaspberry extends AbstractApplication
 						ecran.drawPicture(rgb_gamer, 0, 0, 240, 240);
 
 						rgb="gamer";
-						
-						this.pause( 2000 );
 						
 					}
 					else if( "gamer".equals( rgb ) )
@@ -214,8 +224,6 @@ public class ApplicationRaspberry extends AbstractApplication
 
 						rgb="blast";
 						
-						this.pause( 2000 );
-						
 					}
 					else if( "blast".equals( rgb ) )
 					{
@@ -223,86 +231,19 @@ public class ApplicationRaspberry extends AbstractApplication
 						ecran.drawPicture(rgb_csa, 0, 0, 240, 240);
 
 						rgb="csa";
-						
-						this.pause( 2000 );
-						
+
 					}
-					
+
+					this.pause( 200 );
+						
 				}
-				catch (IOException ioe) 
+				catch (IOException ioe)
 				{
 
 					System.out.println( ">>>>>>>>>> IOException : " + ioe.getMessage() );
 
 				}
 
-			}
-
-		}
-
-	}
-	
-	public class ThreadHorlogeTime extends Thread
-	{
-		
-		private void pause( int ms )
-		{
-			
-			try
-			{
-
-				Thread.sleep( ms );
-			}
-			catch (InterruptedException ie)
-			{
-
-				System.out.println( ">>>>>>>>>> InterruptedException : " + ie.getMessage() );
-			}
-			
-		}
-		
-		public void run()
-		{
-
-			Date date = Calendar.getInstance().getTime();
-
-			while( true )
-			{
-
-
-
-				SimpleDateFormat simpleDateFormatHour = new SimpleDateFormat("HH");
-				SimpleDateFormat simpleDateFormatMinute = new SimpleDateFormat("mm");
-				SimpleDateFormat simpleDateFormatSeconde = new SimpleDateFormat("ss");
-				
-				SimpleDateFormat simpleDateFormatDayOfWeek = new SimpleDateFormat("u");
-				SimpleDateFormat simpleDateFormatDay = new SimpleDateFormat("dd");
-				SimpleDateFormat simpleDateFormatMonth = new SimpleDateFormat("MM");
-				SimpleDateFormat simpleDateFormatYear = new SimpleDateFormat("yyyy");
-				
-				String hour_ =  simpleDateFormatHour.format(date);
-				String minute_ = simpleDateFormatMinute.format(date);
-				String seconde_ = simpleDateFormatSeconde.format(date);
-
-				String dayOfWeek_ = simpleDateFormatDayOfWeek.format(date);
-				String day_ = simpleDateFormatDay.format(date);
-				String month_ = simpleDateFormatMonth.format(date);
-				String year_ = simpleDateFormatYear.format(date);
-				
-				try
-				{
-				
-					setTime( hour_, minute_, seconde_, dayOfWeek_, day_, month_, year_);
-					
-				}
-				catch (IOException ioe) 
-				{
-
-					System.out.println( ">>>>>>>>>> IOException : " + ioe.getMessage() );
-
-				}
-
-				this.pause( 200 );
 			}
 
 		}

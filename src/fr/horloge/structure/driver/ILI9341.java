@@ -17,9 +17,10 @@ import com.pi4j.io.spi.SpiDevice;
 import com.pi4j.io.spi.SpiFactory;
 import com.pi4j.io.spi.SpiMode;
 
+import fr.horloge.structure.FactoryRaspberry;
 import fr.horloge.structure.util.Convertissor;
 
-public class ILI9341
+public class ILI9341 implements IDisplay
 {
 
 	// Plan de cablâge
@@ -50,6 +51,8 @@ public class ILI9341
 	
 	
 	// Liste des variables
+	
+	private static final ILI9341 instance = new ILI9341();
 	
 	private final static int LCD_W = 240;
 	private final static int LCD_H = 320;
@@ -195,12 +198,18 @@ public class ILI9341
 
  	public final static int COLOR_PINK_PAULINE									= 0xFD38;  // 255, 165, 198
 
-    public ILI9341()
+    private ILI9341()
     {
 
     	this.resolution = HEIGHT_04;
     }
-    
+
+	public static final ILI9341 getInstance()
+	{
+		
+		return instance;
+	}
+
     private void configuration() throws IOException, InterruptedException
     {
 
