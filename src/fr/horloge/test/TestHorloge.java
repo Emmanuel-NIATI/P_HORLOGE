@@ -91,6 +91,21 @@ import fr.horloge.structure.ApplicationWindows;
  *	pi@raspberrypi:~$sudo dpkg -i pi4j-1.4.deb
  *
  *
+ *	6) Lancement du script au démarrage du raspberry pi
+ *
+ *	pi@raspberrypi:~$chmod 755 ./TestHorloge.sh
+ *
+ *	pi@raspberrypi:~$mkdir logs
+ *
+ *	pi@raspberrypi:~$sudo crontab -e (puis choisir 1. nano)
+ *
+ *	En bas du fichier, ajoutez la ligne :
+ *
+ *	@reboot sh /home/pi/TestHorloge.sh > /home/pi/logs/log.txt 2>&1
+ *
+ *	pi@raspberrypi:~$sudo reboot
+ *	
+ *
  */
 
 public class TestHorloge
